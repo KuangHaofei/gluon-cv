@@ -10,6 +10,19 @@ from .segbase import SegmentationDataset
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
+class MHPV2Segmentation(SegmentationDataset):
+    NUM_CLASS = 18
+
+    def __init__(self, root=os.path.expanduser('~/.mxnet/datasets/mhp/LV-MHP-v1'),
+                 split='train', mode=None, transform=None, base_size=768, **kwargs):
+        super(MHPV2Segmentation, self).__init__(root, split, mode, transform, base_size, **kwargs)
+        assert os.path.exists(root), "Please setup the dataset using" + "scripts/datasets/mhp_v1.py"
+        self.images, self.masks = _get_mhp_pairs(root, split)
+        assert (len(self.images) == len(self.masks))
+        if len(self.images) == 0:
+            raise(RuntimeError("Found 0 images in subfolders of: \
+                " + root + "\n"))
+
 class MHPV1Segmentation(SegmentationDataset):
     """Multi-Human-Parsing V1 Dataset.
     Parameters
