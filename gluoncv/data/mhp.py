@@ -11,7 +11,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 class MHPV2Segmentation(SegmentationDataset):
-    NUM_CLASS = 18
+    NUM_CLASS = 58
 
     def __init__(self, root=os.path.expanduser('~/.mxnet/datasets/mhp/LV-MHP-v1'),
                  split='train', mode=None, transform=None, base_size=768, **kwargs):
