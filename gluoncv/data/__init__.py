@@ -15,7 +15,8 @@ from .cityscapes import CitySegmentation
 from .pascal_voc.segmentation import VOCSegmentation
 from .pascal_aug.segmentation import VOCAugSegmentation
 from .ade20k.segmentation import ADE20KSegmentation
-from .mhp import MHPV1Segmentation
+from .mhpv1 import MHPV1Segmentation
+from .mhpv2 import MHPV2Segmentation
 from .segbase import ms_batchify_fn
 from .recordio.detection import RecordFileDetection
 from .lst.detection import LstDetection
@@ -35,6 +36,7 @@ datasets = {
     'coco' : COCOSegmentation,
     'citys' : CitySegmentation,
     'mhpv1' : MHPV1Segmentation,
+    'mhpv2' : MHPV2Segmentation,
 }
 
 def get_segmentation_dataset(name, **kwargs):
