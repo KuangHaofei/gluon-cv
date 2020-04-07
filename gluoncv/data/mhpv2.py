@@ -11,11 +11,11 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 class MHPV2Segmentation(SegmentationDataset):
-    """Multi-Human-Parsing V1 Dataset.
+    """Multi-Human-Parsing V2 Dataset.
     Parameters
     ----------
     root : string
-        Path to MHPV1 folder. Default is '$(HOME)/.mxnet/datasets/mhp/LV-MHP-v1'
+        Path to MHPV2 folder. Default is '$(HOME)/.mxnet/datasets/mhp/LV-MHP-v2'
     split: string
         'train', 'val' or 'test'
     transform : callable, optional
@@ -37,9 +37,14 @@ class MHPV2Segmentation(SegmentationDataset):
     """
     # pylint: disable=abstract-method
     NUM_CLASS = 58
-    CLASSES = ("hat", "hair", "sunglasses", "upper clothes", "skirt",
-               "pants", "dress", "belt", "left shoe", "right shoe", "face", "left leg",
-               "right leg", "left arm", "right arm", "bag", "scarf", "torso skin")
+    CLASSES = ("cap/hat", "helmet", "face", "hair", "left-arm", "right-arm",
+               "left-hand", "right-hand", "protector", "bikini/bra", "jacket/windbreaker/hoodie",
+               "t-shirt", "polo-shirt", "sweater", "singlet", "torso-skin", "pants", "shorts/swim-shorts",
+               "skirt", "stockings", "socks", "left-boot", "right-boot", "left-shoe", "right-shoe", "left-highheel",
+               "right-highheel", "left-sandal", "right-sandal", "left-leg", "right-leg", "left-foot", "right-foot",
+               "coat", "dress", "robe", "jumpsuit", "other-full-body-clothes", "headwear", "backpack", "ball", "bats",
+               "belt", "bottle", "carrybag", "cases", "sunglasses", "eyewear", "glove", "scarf", "umbrella", "wallet/purse",
+               "watch", "wristband", "tie", "other-accessary", "other-upper-body-clothes", "other-lower-body-clothes")
 
     def __init__(self, root=os.path.expanduser('~/.mxnet/datasets/mhp/LV-MHP-v2'),
                  split='train', mode=None, transform=None, base_size=768, **kwargs):
@@ -166,9 +171,7 @@ def _get_mhp_pairs_v2(folder, split='train'):
 def _get_mask(mask_paths):
     mask_np = None
     mask_idx = None
-    print(mask_paths)
     for _, mask_path in enumerate(mask_paths):
-        print(mask_path)
         mask_sub = Image.open(mask_path)
         mask_sub_np = np.array(mask_sub, dtype=np.uint8)
         if mask_idx is None:
@@ -190,3 +193,4 @@ def _get_mask(mask_paths):
     mask = Image.fromarray(mask_np)
 
     return mask
+
