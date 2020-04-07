@@ -160,8 +160,6 @@ def _get_mhp_pairs_v2(folder, split='train'):
             else:
                 print('cannot find the image:', imgpath)
 
-            break
-
     return img_paths, mask_paths
 
 
