@@ -36,8 +36,8 @@ class MHPV1Segmentation(SegmentationDataset):
     >>>     num_workers=4)
     """
     # pylint: disable=abstract-method
-    NUM_CLASS = 18
-    CLASSES = ("hat", "hair", "sunglasses", "upper clothes", "skirt",
+    NUM_CLASS = 19
+    CLASSES = ("background", "hat", "hair", "sunglasses", "upper clothes", "skirt",
                "pants", "dress", "belt", "left shoe", "right shoe", "face", "left leg",
                "right leg", "left arm", "right arm", "bag", "scarf", "torso skin")
 
