@@ -99,7 +99,9 @@ class MHPV1Segmentation(SegmentationDataset):
         return img, mask
 
     def _mask_transform(self, mask):
-        return mx.nd.array(np.array(mask), mx.cpu(0)).astype('int32')   # - 1
+        target = np.array(mask).astype('int32')
+        target[target == 0] = -1
+        return mx.nd.array(target, mx.cpu(0))
 
     def __len__(self):
         return len(self.images)
