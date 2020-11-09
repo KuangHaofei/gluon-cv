@@ -100,7 +100,6 @@ class MHPV1Segmentation(SegmentationDataset):
 
     def _mask_transform(self, mask):
         target = np.array(mask).astype('int32')
-        target[target == 0] = -1
         return mx.nd.array(target, mx.cpu(0))
 
     def __len__(self):
